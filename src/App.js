@@ -1,9 +1,10 @@
 import React from 'react'
+import HookPage from './pages/HookPage'
 
 function App() {
   return (
     <div className='App'>
-      <h3>App</h3>
+      <HookPage />
     </div>
   )
 }
