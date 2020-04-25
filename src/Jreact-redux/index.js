@@ -1,4 +1,5 @@
 import React, { useContext, useReducer, useLayoutEffect } from 'react'
+// import { useStore } from 'react-redux'
 
 const Context = React.createContext()
 export const connect = (mapStateToProps, mapDispatchToProps) => (
@@ -44,4 +45,35 @@ export function bindActionCreators(creators, dispatch) {
 
 function bindActionCreator(creator, dispatch) {
   return (...args) => dispatch(creator(...args))
+}
+
+export function useSelector(selector) {
+  const store = useStore()
+  const { getState, subscribe } = store
+  // 返回store state
+  const selectState = selector(getState())
+
+  const [, forceUpdate] = useReducer((x) => x + 1, 0)
+
+  useLayoutEffect(() => {
+    const unsubscribe = subscribe(() => {
+      forceUpdate()
+    })
+    return () => {
+      if (unsubscribe) {
+        unsubscribe()
+      }
+    }
+  }, [store, subscribe])
+  return selectState
+}
+
+export function useDispatch() {
+  const store = useStore()
+  return store.dispatch
+}
+
+export function useStore() {
+  const store = useContext(Context)
+  return store
 }
