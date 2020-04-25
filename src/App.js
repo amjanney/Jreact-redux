@@ -1,10 +1,10 @@
 import React from 'react'
-import ReactReduxPage from './pages/ReactReduxPage'
+import ReactReduxHookPage from './pages/ReactReduxHookPage'
 
 function App() {
   return (
     <div className='App'>
-      <ReactReduxPage />
+      <ReactReduxHookPage />
     </div>
   )
 }
