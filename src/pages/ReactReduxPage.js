@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from '../Jreact-redux/'
 
 export default connect(
   ({ count }) => ({ count }),
